@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovet.mapper.TestMapper" >
+
+
+    <select id="getAll" resultType="com.lovet.entity.Test"  >
+        SELECT
+        *
+        FROM test order by id desc limit 3
+    </select>
+
+    <select id="count" resultType="int"  >
+        SELECT
+        count(*)
+        FROM test
+    </select>
+
+    <insert id="insert" parameterType="com.lovet.entity.Test" >
+        INSERT INTO
+        test
+        (id, name,age)
+        VALUES
+        (#{id},#{name},#{age})
+    </insert>
+
+</mapper>

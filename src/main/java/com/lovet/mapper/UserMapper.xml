@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lovet.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.lovet.entity.User" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="order_id" property="orderId" jdbcType="BIGINT" />
+        <result column="user_id" property="userId" jdbcType="BIGINT" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="passWord" property="passWord" jdbcType="VARCHAR" />
+        <result column="user_sex" property="userSex" javaType="com.lovet.enums.UserSexEnum"/>
+        <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        *
+        FROM t_user order by id desc limit 3
+    </select>
+
+    <select id="count" resultType="int"  >
+        SELECT
+        count(*)
+        FROM t_user
+    </select>
+
+    <insert id="insert" parameterType="com.lovet.entity.User" >
+        INSERT INTO
+        t_user
+        (id, order_id,user_id,userName,passWord,user_sex)
+        VALUES
+        (#{id},#{orderId},#{userId},#{userName}, #{passWord}, #{userSex})
+    </insert>
+
+</mapper>
